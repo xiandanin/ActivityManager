@@ -2,6 +2,7 @@ package com.dyhdyh.manager.example;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,32 +16,41 @@ import com.dyhdyh.manager.ActivityManager;
  *         created 2017/12/8 14:45
  */
 public class WindowLog {
-    private static TextView tv;
+    private static View layout;
 
 
     public static void create(Context context) {
         //赋值WindowManager&LayoutParam.
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                PixelFormat.TRANSLUCENT);
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        //设置type.系统提示型窗口，一般都在应用程序窗口之上.
-        params.type = WindowManager.LayoutParams.TYPE_TOAST;
-        //设置效果为背景透明.
-        params.format = PixelFormat.RGBA_8888;
-        //设置flags.不可聚焦及不可使用按钮对悬浮窗进行操控.
-        params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 
-        //设置窗口初始停靠位置.
+        int actionBarSize = 0;
+        TypedValue typedValue = new TypedValue();
+        if (context.getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true)) {
+            actionBarSize = TypedValue.complexToDimensionPixelSize(typedValue.data, context.getResources().getDisplayMetrics());
+        }
+        params.y = actionBarSize;
+
         params.gravity = Gravity.LEFT | Gravity.TOP;
-
         LayoutInflater inflater = LayoutInflater.from(context);
-        //获取浮动窗口视图所在布局.
-        View layout = inflater.inflate(R.layout.window_log, null);
-        tv = layout.findViewById(R.id.tv_log);
-        //添加toucherlayout
+        layout = inflater.inflate(R.layout.window_log, null);
         windowManager.addView(layout, params);
     }
 
+    public static void setVisibility(boolean visible) {
+        if (layout == null) {
+            return;
+        }
+        layout.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
     public static void updateLog() {
+        TextView tv = layout.findViewById(R.id.tv_log);
         StringBuffer sb = new StringBuffer();
         sb.append("当前打开Activity：");
         sb.append(ActivityManager.getActivityCount());
