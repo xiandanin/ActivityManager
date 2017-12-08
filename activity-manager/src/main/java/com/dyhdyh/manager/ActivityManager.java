@@ -7,37 +7,50 @@ import java.util.Stack;
 
 /**
  * Activity管理器
+ *
  * @author dengyuhan
  *         created 2017/12/7 17:20
  */
 public class ActivityManager {
+    private static ActivityManager mInstance;
 
-    private static final Stack<Activity> mActivityStack = new Stack<>();
+    private final Stack<Activity> mActivityStack = new Stack<>();
 
-    public static void register(Application application, ActivityManagerLifecycleCallbackImpl callback) {
+    private ActivityManager() {
+    }
+
+    public static ActivityManager getInstance() {
+        synchronized (ActivityManager.class) {
+            if (mInstance == null) {
+                mInstance = new ActivityManager();
+            }
+        }
+        return mInstance;
+    }
+
+    public void register(Application application, ActivityManagerLifecycleCallbackImpl callback) {
         application.registerActivityLifecycleCallbacks(callback);
     }
 
-    public static void register(Application application) {
+    public void register(Application application) {
         register(application, new ActivityManagerLifecycleCallbackImpl());
     }
 
-    public static void addActivity(Activity activity) {
+    public void addActivity(Activity activity) {
         mActivityStack.push(activity);
     }
 
-    public static void removeActivity(Activity activity) {
+    public void removeActivity(Activity activity) {
         mActivityStack.remove(activity);
     }
-
 
     /**
      * finish对应class的所有activity
      *
-     * @param cls
+     * @param cls 要关闭的Activity Class
      */
-    public static void finishActivity(Class<? extends Activity>... cls) {
-        for (int i = 0; i < mActivityStack.size(); i++) {
+    public void finishActivity(Class<? extends Activity>... cls) {
+        for (int i = mActivityStack.size() - 1; i >= 0; i--) {
             Activity activity = mActivityStack.get(i);
             for (Class<? extends Activity> c : cls) {
                 if (c.getName().equals(activity.getClass().getName())) {
@@ -47,13 +60,25 @@ public class ActivityManager {
         }
     }
 
+
+    /**
+     * 关闭栈顶的Activity
+     */
+    public void finishTopActivity() {
+        Activity pop = mActivityStack.pop();
+        if (!pop.isFinishing()) {
+            pop.finish();
+        }
+    }
+
+
     /**
      * finish除白名单以外的所有activity
      *
      * @param activityWhitelist 要保留的activity
      */
-    public static void finishAllActivityByWhitelist(Class<? extends Activity>... activityWhitelist) {
-        for (int i = 0; i < mActivityStack.size(); i++) {
+    public void finishAllActivityByWhitelist(Class<? extends Activity>... activityWhitelist) {
+        for (int i = mActivityStack.size() - 1; i >= 0; i--) {
             Activity activity = mActivityStack.get(i);
             for (Class<? extends Activity> c : activityWhitelist) {
                 if (c.getName().equals(activity.getClass().getName())) {
@@ -69,17 +94,15 @@ public class ActivityManager {
     /**
      * finish所有activity
      */
-    public static void finishAllActivity() {
-        for (Activity activity : mActivityStack) {
-            if (!activity.isFinishing()) {
-                activity.finish();
-            }
+    public void finishAllActivity() {
+        for (int i = mActivityStack.size() - 1; i >= 0; i--) {
+            Activity activity = mActivityStack.get(i);
+            finishActivity(activity);
         }
-        mActivityStack.clear();
     }
 
 
-    private static void finishActivity(Activity activity) {
+    private void finishActivity(Activity activity) {
         if (activity != null) {
             if (!activity.isFinishing()) {
                 activity.finish();
@@ -88,19 +111,22 @@ public class ActivityManager {
         }
     }
 
+    public Stack<Activity> getActivityStack() {
+        return mActivityStack;
+    }
 
     /**
      * @param activity
      * @return 是否存在此activity
      */
-    public static boolean isContainsActivity(Activity activity) {
+    public boolean isContainsActivity(Activity activity) {
         return mActivityStack.contains(activity);
     }
 
     /**
      * @return 已经打开activity的数量
      */
-    public static int getActivityCount() {
+    public int getActivityCount() {
         return mActivityStack.size();
     }
 

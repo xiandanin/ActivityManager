@@ -12,7 +12,7 @@ public class ActivityManagerLifecycleCallbackImpl implements Application.Activit
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        ActivityManager.addActivity(activity);
+        ActivityManager.getInstance().addActivity(activity);
     }
 
     @Override
@@ -42,6 +42,6 @@ public class ActivityManagerLifecycleCallbackImpl implements Application.Activit
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        ActivityManager.removeActivity(activity);
+        ActivityManager.getInstance().removeActivity(activity);
     }
 }

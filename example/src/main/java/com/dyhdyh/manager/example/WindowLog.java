@@ -1,5 +1,6 @@
 package com.dyhdyh.manager.example;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.TypedValue;
@@ -10,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.dyhdyh.manager.ActivityManager;
+
+import java.util.Stack;
 
 /**
  * @author dengyuhan
@@ -53,16 +56,22 @@ public class WindowLog {
         TextView tv = layout.findViewById(R.id.tv_log);
         StringBuffer sb = new StringBuffer();
         sb.append("当前打开Activity：");
-        sb.append(ActivityManager.getActivityCount());
+        sb.append(ActivityManager.getInstance().getActivityCount());
         sb.append("\n");
-        sb.append("栈底Activity：");
-        sb.append(ActivityManager.getActivityCount());
         sb.append("栈顶Activity：");
-        sb.append(ActivityManager.getActivityCount());
+        Activity peek = ActivityManager.getInstance().getActivityStack().peek();
+        sb.append(peek.getClass().getSimpleName() + "@" + Integer.toHexString(peek.hashCode()));
         sb.append("\n");
         sb.append("\n");
-        sb.append("\n");
-        sb.append("\n");
+
+        Stack<Activity> stack = ActivityManager.getInstance().getActivityStack();
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            Activity activity = stack.get(i);
+            sb.append(i);
+            sb.append(" - ");
+            sb.append(activity.getClass().getSimpleName() + "@" + Integer.toHexString(activity.hashCode()));
+            sb.append("\n");
+        }
         tv.setText(sb.toString());
     }
 

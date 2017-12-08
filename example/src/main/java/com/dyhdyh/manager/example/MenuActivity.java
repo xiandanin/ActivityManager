@@ -1,6 +1,5 @@
 package com.dyhdyh.manager.example;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -22,20 +21,24 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(this, cls[index]));
     }
 
+    public void clickFinishTop(MenuItem menuItem) {
+        ActivityManager.getInstance().finishTopActivity();
+    }
+
     public void clickFinishAllA(MenuItem menuItem) {
-        ActivityManager.finishActivity(Activity.class);
+        ActivityManager.getInstance().finishActivity(AActivity.class);
     }
 
     public void clickFinishAllCD(MenuItem menuItem) {
-        ActivityManager.finishActivity(BActivity.class, CActivity.class);
+        ActivityManager.getInstance().finishActivity(BActivity.class, CActivity.class);
     }
 
     public void clickFinishByWhitelist(MenuItem menuItem) {
-        ActivityManager.finishAllActivityByWhitelist(DActivity.class);
+        ActivityManager.getInstance().finishAllActivityByWhitelist(DActivity.class);
     }
 
     public void clickFinishAll(MenuItem menuItem) {
-        ActivityManager.finishAllActivity();
+        ActivityManager.getInstance().finishAllActivity();
     }
 
 

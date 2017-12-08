@@ -18,7 +18,7 @@ public class ExampleApplication extends Application {
         WindowLog.create(this);
 
         //注册管理器
-        ActivityManager.register(this);
+        ActivityManager.getInstance().register(this);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override

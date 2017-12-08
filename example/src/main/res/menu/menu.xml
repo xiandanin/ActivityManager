@@ -5,6 +5,9 @@
         android:onClick="clickRandomActivity"
         android:title="随机打开Activity"></item>
     <item
+        android:onClick="clickFinishTop"
+        android:title="关闭栈顶的Activity"></item>
+    <item
         android:onClick="clickFinishAllA"
         android:title="关闭所有A"></item>
     <item
