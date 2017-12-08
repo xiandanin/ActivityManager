@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:onClick="clickRandomActivity"
+        android:title="随机打开Activity"></item>
+    <item
+        android:onClick="clickFinishAllA"
+        android:title="关闭所有A"></item>
+    <item
+        android:onClick="clickFinishAllCD"
+        android:title="关闭所有B，C"></item>
+    <item
+        android:onClick="clickFinishByWhitelist"
+        android:title="关闭D以外的Activity"></item>
+    <item
+        android:onClick="clickFinishAll"
+        android:title="关闭所有Activity"></item>
+</menu>
