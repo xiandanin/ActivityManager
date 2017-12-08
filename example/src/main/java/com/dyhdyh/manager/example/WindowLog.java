@@ -57,6 +57,7 @@ public class WindowLog {
         StringBuffer sb = new StringBuffer();
         sb.append("当前打开Activity：");
         sb.append(ActivityManager.getInstance().getActivityCount());
+        sb.append("个");
         sb.append("\n");
         sb.append("栈顶Activity：");
         Activity peek = ActivityManager.getInstance().getActivityStack().peek();
