@@ -28,4 +28,7 @@ ActivityManager.getInstance().finishActivity(BActivity.class, CActivity.class);
 
 //保留DActivity,其余全部关闭
 ActivityManager.getInstance().finishAllActivityByWhitelist(DActivity.class);
+
+//关闭所有Activity
+ActivityManager.getInstance().finishAllActivity();
 ```
