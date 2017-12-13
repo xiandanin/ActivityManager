@@ -1,5 +1,5 @@
 # ActivityManager
-一个管理所有Activity的库，可以在任意处关闭Activity，操作已经打开的Activity
+一个管理所有Activity的库，可以在任意处关闭任意Activity
 
 ### __Gradle引入__
 ```
