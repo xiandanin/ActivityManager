@@ -34,4 +34,6 @@ ActivityManager.getInstance().finishAllActivity();
 ```
 
 ### __示例apk__
+[点击下载](https://github.com/dengyuhan/ActivityManager/releases/download/1.0.0/ActivityManager-example.apk)  
+
 ![](image/qrcode.png)
