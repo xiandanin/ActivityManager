@@ -32,3 +32,6 @@ ActivityManager.getInstance().finishAllActivityByWhitelist(DActivity.class);
 //关闭所有Activity
 ActivityManager.getInstance().finishAllActivity();
 ```
+
+### __示例apk__
+![](image/qrcode.png)
