@@ -1,0 +1,40 @@
+ext {
+    android =
+            [
+                    versionCode      : 1,
+                    versionName      : "1.0.0",
+
+                    compileSdkVersion: 26,
+                    buildToolsVersion: "26.0.2",
+                    minSdkVersion    : 14,
+                    targetSdkVersion : 26,
+                    supportVersion   : "26.1.0",
+            ]
+
+    jcenter =
+            [
+                    //项目名称
+                    name       : "ActivityManager",
+                    groupId    : "com.dyhdyh",
+                    //项目地址
+                    siteUrl    : "https://github.com/dengyuhan/ActivityManager",
+                    //项目git地址
+                    gitUrl     : "https://github.com/dengyuhan/ActivityManager.git",
+                    //项目描述
+                    description: "一个管理所有Activity的库，可以关闭任意Activity",
+                    //开发者的一些基本信息
+                    authorId   : "dengyuhan",
+                    authorName : "dengyuhan",
+                    authorEmail: "22309946@qq.com",
+
+                    licenses   : {
+                        license {
+                            name 'MIT'
+                            url 'https://opensource.org/licenses/MIT'
+                        }
+                    },
+                    licenseName: 'MIT'
+            ]
+
+
+}
