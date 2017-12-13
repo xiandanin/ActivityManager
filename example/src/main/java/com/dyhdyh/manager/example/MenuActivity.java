@@ -22,6 +22,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void clickFinishTop(MenuItem menuItem) {
+        //关闭栈顶Activity
         ActivityManager.getInstance().finishTopActivity();
     }
 
@@ -30,14 +31,17 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void clickFinishAllCD(MenuItem menuItem) {
+        //关闭所有BActivity,CActivity
         ActivityManager.getInstance().finishActivity(BActivity.class, CActivity.class);
     }
 
     public void clickFinishByWhitelist(MenuItem menuItem) {
+        //保留DActivity,其余全部关闭
         ActivityManager.getInstance().finishAllActivityByWhitelist(DActivity.class);
     }
 
     public void clickFinishAll(MenuItem menuItem) {
+        //关闭所有Activity
         ActivityManager.getInstance().finishAllActivity();
     }
 
