@@ -123,6 +123,17 @@ public class ActivityManager {
         return mActivityStack.contains(activity);
     }
 
+
+    public boolean isContainsActivity(Class<? extends Activity> activityClass) {
+        for (int i = mActivityStack.size() - 1; i >= 0; i--) {
+            Activity activity = mActivityStack.get(i);
+            if (activityClass.getName().equals(activity.getClass().getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * @return 已经打开activity的数量
      */
