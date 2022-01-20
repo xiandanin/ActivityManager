@@ -1,16 +1,42 @@
-apply plugin: 'com.android.library'
-apply from: "bintray.gradle"
+plugins {
+    id 'com.android.library'
+}
 
 android {
+    compileSdkVersion 31
+    buildToolsVersion "31.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 7
+        versionName "1.1.0"
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+
 }
+
+
+ext {
+    groupId = 'in.xiandan'
+    description = '全局耗时计算器，可以在任何地方计算耗时'
+    gitUrl = 'https://github.com/xiandanin/AnyCost'
+    authorEmail = 'denghahae@gmail.com'
+    license = 'MIT'
+}
+apply from: 'publish.gradle'

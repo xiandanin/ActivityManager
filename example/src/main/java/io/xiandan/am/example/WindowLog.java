@@ -1,6 +1,7 @@
-package com.dyhdyh.manager.example;
+package io.xiandan.am.example;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.TypedValue;
@@ -10,12 +11,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.dyhdyh.manager.ActivityManager;
+import com.dyhdyh.manager.example.R;
 
 import java.util.Stack;
 
 /**
- * @author dengyuhan
+ * @author xiandanin
  *         created 2017/12/8 14:45
  */
 public class WindowLog {

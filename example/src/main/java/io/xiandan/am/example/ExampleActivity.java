@@ -1,10 +1,12 @@
-package com.dyhdyh.manager.example;
+package io.xiandan.am.example;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.dyhdyh.manager.example.R;
+
 /**
- * @author dengyuhan
+ * @author xiandanin
  *         created 2017/12/8 14:21
  */
 public abstract class ExampleActivity extends MenuActivity {

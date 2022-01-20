@@ -1,16 +1,16 @@
-package com.dyhdyh.manager.example;
+package io.xiandan.am.example;
 
-import android.Manifest;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
+
+import com.dyhdyh.manager.example.R;
 
 import java.lang.reflect.Method;
 

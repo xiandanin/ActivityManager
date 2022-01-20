@@ -1,7 +1,7 @@
-package com.dyhdyh.manager.example;
+package io.xiandan.am.example;
 
 /**
- * @author dengyuhan
+ * @author xiandanin
  *         created 2017/12/8 14:19
  */
 public class AActivity extends ExampleActivity {

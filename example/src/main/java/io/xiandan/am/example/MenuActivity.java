@@ -1,16 +1,19 @@
-package com.dyhdyh.manager.example;
+package io.xiandan.am.example;
 
+import android.app.ActivityManager;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.dyhdyh.manager.ActivityManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
+import io.xiandan.utils.ActivityLifecycleManager;
+
 /**
- * @author dengyuhan
+ * @author xiandanin
  *         created 2017/12/8 17:08
  */
 public class MenuActivity extends AppCompatActivity {
@@ -23,26 +26,26 @@ public class MenuActivity extends AppCompatActivity {
 
     public void clickFinishTop(MenuItem menuItem) {
         //关闭栈顶Activity
-        ActivityManager.getInstance().finishTopActivity();
+        ActivityLifecycleManager.getInstance().finishTopActivity();
     }
 
     public void clickFinishAllA(MenuItem menuItem) {
-        ActivityManager.getInstance().finishActivity(AActivity.class);
+        ActivityLifecycleManager.getInstance().finishActivityByClass(AActivity.class);
     }
 
     public void clickFinishAllCD(MenuItem menuItem) {
         //关闭所有BActivity,CActivity
-        ActivityManager.getInstance().finishActivity(BActivity.class, CActivity.class);
+        ActivityLifecycleManager.getInstance().finishActivityByClass(BActivity.class, CActivity.class);
     }
 
     public void clickFinishByWhitelist(MenuItem menuItem) {
         //保留DActivity,其余全部关闭
-        ActivityManager.getInstance().finishAllActivityByWhitelist(DActivity.class);
+        ActivityLifecycleManager.getInstance().finishOutsideActivityTheClass(DActivity.class);
     }
 
     public void clickFinishAll(MenuItem menuItem) {
         //关闭所有Activity
-        ActivityManager.getInstance().finishAllActivity();
+        ActivityLifecycleManager.getInstance().finishAllActivity();
     }
 
 

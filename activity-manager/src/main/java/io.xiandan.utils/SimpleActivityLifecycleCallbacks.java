@@ -1,18 +1,16 @@
-package com.dyhdyh.manager;
+package io.xiandan.utils;
 
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
 /**
- * @author dengyuhan
- *         created 2017/12/8 10:47
+ * Created by xiandanin on 2022-01-20 23:44
  */
-public class ActivityManagerLifecycleCallbackImpl implements Application.ActivityLifecycleCallbacks {
-
+public abstract class SimpleActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        ActivityManager.getInstance().addActivity(activity);
+
     }
 
     @Override
@@ -42,6 +40,6 @@ public class ActivityManagerLifecycleCallbackImpl implements Application.Activit
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        ActivityManager.getInstance().removeActivity(activity);
+
     }
 }
